@@ -2,6 +2,7 @@ package interpreter.virtualmachine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Stack;
 
 class RunTimeStack {
@@ -25,8 +26,26 @@ class RunTimeStack {
      * Frame pointers would be 0,3,6
      */
     public String verboseDisplay() {
-        // ToDo
-        return null;
+        StringBuilder initialResult = new StringBuilder();
+        List<Integer> framePointers = new ArrayList<>(framePointer);
+
+        // Create sub-lists
+        for (int i = 0; i < framePointers.size(); i++) {
+            int start = framePointers.get(i);
+            // The end of the sublist is the start of the next sublist (exclusive)
+            // If it's the last sublist, the end is the size of RTS
+            int end = (i < framePointers.size() - 1) ? framePointers.get(i + 1) : runTimeStack.size();
+            initialResult.append(runTimeStack.subList(start, end));
+        }
+
+        // Clean up the format made by `subList()`
+        String finalResult = initialResult.toString();
+        // Remove spaces in sub-lists
+        finalResult = finalResult.replaceAll(" ", "");
+        // Separate each sub-lists by a space
+        finalResult = finalResult.replaceAll("]", "] ");
+
+        return finalResult;
     }
 
     /**
@@ -99,28 +118,37 @@ class RunTimeStack {
         framePointer.pop();
     }
 
-//    public void print() {
-//        System.out.println("\t-----");
-//        System.out.println("RTS: " + runTimeStack.toString());
-//        System.out.println("FPS: " +framePointer.toString());
-//        System.out.println("\t-----\n");
-//    }
-//
-//    public static void main(String[] args) {
-//        RunTimeStack runTimeStack = new RunTimeStack();
-//
-//        runTimeStack.push(1);
-//        runTimeStack.push(2);
-//        runTimeStack.push(3);
-//        // Function `f` call
-//        runTimeStack.push(4);
-//        runTimeStack.push(5);
-//        // Number of `f`'s arguments
-//        runTimeStack.newFrameAt(2);
-//
-//        runTimeStack.print();
-//
-//        runTimeStack.popFrame();
-//        runTimeStack.print();
-//    }
+    public void print() {
+        System.out.println("\t-----");
+        System.out.println("RTS: " + runTimeStack.toString());
+        System.out.println("FPS: " +framePointer.toString());
+        System.out.println("\t-----\n");
+    }
+
+    public static void main(String[] args) {
+        RunTimeStack runTimeStack = new RunTimeStack();
+
+        runTimeStack.push(1);
+        runTimeStack.push(2);
+        runTimeStack.push(3);
+
+        runTimeStack.push(4);
+        runTimeStack.newFrameAt(1);
+
+        runTimeStack.push(5);
+        runTimeStack.newFrameAt(1);
+
+        runTimeStack.push(6);
+        runTimeStack.push(7);
+        runTimeStack.push(8);
+        runTimeStack.push(9);
+        runTimeStack.push(10);
+        runTimeStack.newFrameAt(4);
+
+        System.out.println(runTimeStack.verboseDisplay());
+        runTimeStack.print();
+
+        runTimeStack.popFrame();
+        runTimeStack.print();
+    }
 }
