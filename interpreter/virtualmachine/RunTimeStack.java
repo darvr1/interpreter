@@ -117,38 +117,4 @@ class RunTimeStack {
         }
         framePointer.pop();
     }
-
-    public void print() {
-        System.out.println("\t-----");
-        System.out.println("RTS: " + runTimeStack.toString());
-        System.out.println("FPS: " +framePointer.toString());
-        System.out.println("\t-----\n");
-    }
-
-    public static void main(String[] args) {
-        RunTimeStack runTimeStack = new RunTimeStack();
-
-        runTimeStack.push(1);
-        runTimeStack.push(2);
-        runTimeStack.push(3);
-
-        runTimeStack.push(4);
-        runTimeStack.newFrameAt(1);
-
-        runTimeStack.push(5);
-        runTimeStack.newFrameAt(1);
-
-        runTimeStack.push(6);
-        runTimeStack.push(7);
-        runTimeStack.push(8);
-        runTimeStack.push(9);
-        runTimeStack.push(10);
-        runTimeStack.newFrameAt(4);
-
-        System.out.println(runTimeStack.verboseDisplay());
-        runTimeStack.print();
-
-        runTimeStack.popFrame();
-        runTimeStack.print();
-    }
 }
