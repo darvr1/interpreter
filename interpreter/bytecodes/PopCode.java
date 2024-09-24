@@ -9,9 +9,12 @@ public class PopCode extends ByteCode{
 
     @Override
     public void execute(VirtualMachine vm) {
-        if (popCount > 0) {
-            vm.pop(popCount);
-        } else {
+        /*
+         * ToDo: IS IT RTS SIZE?????
+         */
+        int currentFrame = vm.rtsSize();
+        int maxPop = Math.min(popCount, currentFrame);
+        for (int i = 0; i < maxPop; i++) {
             vm.pop();
         }
     }
