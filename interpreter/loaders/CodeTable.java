@@ -5,8 +5,11 @@
  */
 package interpreter.loaders;
 
-public final class CodeTable {
+import java.util.HashMap;
+import java.util.Map;
 
+public final class CodeTable {
+   private static final Map<String, String> table = new HashMap<>();
    private CodeTable() {
       // do nothing
    }
@@ -15,7 +18,21 @@ public final class CodeTable {
     * fill code table with class name mappings
     */
    public static void init() {
-
+      table.put("ARGS", "ArgsCode");
+      table.put("BOP", "BopCode");
+      table.put("CALL", "CallCode");
+      table.put("FALSEBRANCH", "FalseBranchCode");
+      table.put("GOTO", "GotoCode");
+      table.put("HALT", "HaltCode");
+      table.put("LABEL", "LabelCode");
+      table.put("LIT", "LitCode");
+      table.put("LOAD", "LoadCode");
+      table.put("POP", "PopCode");
+      table.put("READ", "ReadCode");
+      table.put("RETURN", "ReturnCode");
+      table.put("STORE", "StoreCode");
+      table.put("VERBOSE", "VerboseCode");
+      table.put("WRITE", "WriteCode");
    }
 
    /**
@@ -25,7 +42,7 @@ public final class CodeTable {
     * @return class name of bytecode
     */
    public static String getClassName(String token) {
-      return null;
+      return table.get(token);
    }
 
 }
