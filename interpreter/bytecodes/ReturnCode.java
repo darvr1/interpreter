@@ -5,7 +5,7 @@ import interpreter.virtualmachine.VirtualMachine;
 import java.util.List;
 
 public class ReturnCode extends ByteCode{
-    private String id;
+    private String label;
     private int value;
 
     @Override
@@ -19,18 +19,18 @@ public class ReturnCode extends ByteCode{
     @Override
     public void init(List<String> args) {
         if (args.size() > 1) {
-            id = args.get(1);
+            label = args.get(1);
         }
     }
 
     @Override
     public String toString() {
         String result = "RETURN";
-        if (id != null) {
+        if (label != null) {
             // Get base id
-            String baseId = this.id.substring(0, this.id.indexOf("<"));
+            String baseId = this.label.substring(0, this.label.indexOf("<"));
 
-            result += " " + this.id + "\t\tEXIT " + baseId + " : " + this.value;
+            result += " " + this.label + "\t\tEXIT " + baseId + " : " + this.value;
         }
         return result;
     }
