@@ -23,7 +23,7 @@ public class LoadCode extends ByteCode{
     public String toString() {
         String result = "LOAD " + this.offset;
         if (this.id != null)  {
-            result += " " + this.id + "\t\t<load " + this.id + ">";
+            result += " " + this.id + "\t<load " + this.id + ">";
         }
         return result;
     }

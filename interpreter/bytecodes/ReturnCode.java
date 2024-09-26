@@ -30,7 +30,7 @@ public class ReturnCode extends ByteCode{
             // Get base id
             String baseId = this.label.substring(0, this.label.indexOf("<"));
 
-            result += " " + this.label + "\t\tEXIT " + baseId + " : " + this.value;
+            result += " " + this.label + "\tEXIT " + baseId + " : " + this.value;
         }
         return result;
     }

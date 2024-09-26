@@ -25,7 +25,7 @@ public class StoreCode extends ByteCode{
     public String toString() {
         String result = "STORE " + this.offset;
         if (this.id != null)  {
-            result += " " + this.id + "\t\t" + this.id + "=" + this.valuePopped;
+            result += " " + this.id + "\t" + this.id + "=" + this.valuePopped;
         }
         return result;
     }
