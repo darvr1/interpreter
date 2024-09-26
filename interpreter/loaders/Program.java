@@ -1,7 +1,14 @@
 package interpreter.loaders;
 
+import interpreter.bytecodes.ByteCode;
+import interpreter.bytecodes.ByteCodeJump;
+import interpreter.bytecodes.LabelCode;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 public class Program {
 
     private List<ByteCode> program;
@@ -11,7 +18,7 @@ public class Program {
      * ArrayList
      */
     public Program() {
-
+        this.program = new ArrayList<>();
     }
 
     /**
@@ -19,7 +26,7 @@ public class Program {
      * @return size of program
      */
     public int getSize() {
-        return 0;
+        return this.program.size();
     }
 
     /**
@@ -28,7 +35,7 @@ public class Program {
      * @return a bytecode.
      */
     public ByteCode getCode(int programCounter) {
-        return null;
+        return this.program.get(programCounter);
     }
 
     /**
@@ -36,7 +43,7 @@ public class Program {
      * @param c bytecode to be added
      */
     public void addCode(ByteCode c) {
-
+        this.program.add(c);
     }
 
     /**
@@ -49,6 +56,20 @@ public class Program {
      * **** METHOD SIGNATURE CANNOT BE CHANGED *****
      */
     public void resolveAddress() {
+    Map<String, Integer> jumpMap = new HashMap<>();
+        // Map all labels
+        for (int i = 0 ; i < this.program.size() ; i++) {
+            ByteCode code = this.program.get(i);
+            if (code instanceof LabelCode label) {
+                jumpMap.put(label.getLabel(), i);
+            }
+        }
 
+        // Set address for each jumper byte codes
+        for (ByteCode code : this.program) {
+            if (code instanceof ByteCodeJump jumper) {
+                jumper.setAddress(jumpMap.get(jumper.getLabel()));
+            }
+        }
     }
 }   

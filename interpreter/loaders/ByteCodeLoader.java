@@ -1,7 +1,6 @@
 package interpreter.loaders;
 
 import interpreter.bytecodes.ByteCode;
-import interpreter.loaders.Program;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,10 +40,7 @@ public final class ByteCodeLoader {
                         .getDeclaredConstructor()
                         .newInstance();
 
-//                System.out.println(bc.getClass().getName()); // FIXME
-
-                // Exclude first element since it cannot be an argument.
-                bc.init(Arrays.asList(Arrays.copyOfRange(items, 1, items.length)));
+                bc.init(Arrays.asList(items));
                 program.addCode(bc);
             }
         } catch(IOException | ClassNotFoundException | InvocationTargetException | InstantiationException |
