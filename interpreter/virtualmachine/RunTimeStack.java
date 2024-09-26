@@ -2,7 +2,6 @@ package interpreter.virtualmachine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Stack;
 
 class RunTimeStack {
@@ -40,8 +39,6 @@ class RunTimeStack {
 
         // Clean up the format made by `subList()`
         String finalResult = initialResult.toString();
-        // Remove spaces in sub-lists
-        finalResult = finalResult.replaceAll(" ", "");
         // Separate each sub-lists by a space
         finalResult = finalResult.replaceAll("]", "] ");
 
@@ -116,5 +113,12 @@ class RunTimeStack {
             this.pop();
         }
         framePointer.pop();
+    }
+
+    /**
+     * @return
+     */
+    public int getCurrentFrameSize() {
+        return runTimeStack.size() - framePointer.peek();
     }
 }
