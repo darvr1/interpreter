@@ -22,7 +22,7 @@ public class LitCode extends ByteCode{
     @Override
     public String toString() {
         String result = "LIT " + this.value;
-        if (this.id != null) result += " " + this.id + "\tint " + this.id;
+        if (this.id != null) result += "\tint " + this.id;
         return result;
     }
 }
