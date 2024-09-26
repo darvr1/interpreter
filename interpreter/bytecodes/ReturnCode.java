@@ -29,8 +29,8 @@ public class ReturnCode extends ByteCode{
         if (label != null) {
             // Get base id
             String baseId = this.label.substring(0, this.label.indexOf("<"));
-
-            result += " " + this.label + "\tEXIT " + baseId + " : " + this.value;
+            // Double space before EXIT instead of \t to match sample output
+            result += " " + this.label + "  EXIT " + baseId + " : " + this.value;
         }
         return result;
     }

@@ -32,7 +32,7 @@ public class CallCode extends ByteCodeJump {
             baseId = this.label.substring(0, this.label.indexOf("<"));
         }
 
-        result += "\t" + baseId + "(" + args + ")";
+        result += "\t" + baseId + "(" + args.replaceAll(" ", "") + ")";
         return result;
     }
 
