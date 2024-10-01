@@ -1,7 +1,7 @@
 package interpreter.loaders;
 
 import interpreter.bytecodes.ByteCode;
-import interpreter.bytecodes.ByteCodeJump;
+import interpreter.bytecodes.Branchable;
 import interpreter.bytecodes.LabelCode;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class Program {
 
         // Set address for each jumper byte codes
         for (ByteCode code : this.program) {
-            if (code instanceof ByteCodeJump jumper) {
+            if (code instanceof Branchable jumper) {
                 jumper.setAddress(jumpMap.get(jumper.getLabel()));
             }
         }
