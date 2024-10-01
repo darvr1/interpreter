@@ -37,10 +37,8 @@ class RunTimeStack {
             initialResult.append(runTimeStack.subList(start, end));
         }
 
-        // Clean up the format made by `subList()`
         String finalResult = initialResult.toString();
-        // Separate each sub-lists by a space
-        finalResult = finalResult.replaceAll("]", "] ");
+        finalResult = finalResult.replaceAll("]", "] "); // Separate frames with space
 
         return finalResult;
     }
@@ -116,7 +114,8 @@ class RunTimeStack {
     }
 
     /**
-     * @return
+     * Gets the size of the current frame.
+     * @return the size of the current frame.
      */
     public int getCurrentFrameSize() {
         return runTimeStack.size() - framePointer.peek();

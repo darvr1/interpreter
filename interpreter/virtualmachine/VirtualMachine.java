@@ -38,18 +38,35 @@ public class VirtualMachine {
         }
     }
 
+    /**
+     * Calls the runtime stack's push method.
+     * @param value The value to push.
+     * @return      The pushed value.
+     */
     public int push(int value) {
         return this.runTimeStack.push(value);
     }
 
+    /**
+     * Calls the runtime stack's pop method.
+     * @return The popped value.
+     */
     public int pop() {
         return this.runTimeStack.pop();
     }
 
+    /**
+     * Calls the runtime stack's peek method.
+     * @return The top of the stack.
+     */
     public int peek() {
         return this.runTimeStack.peek();
     }
 
+    /**
+     * Calls the runtime stack's getCurrentFrameSize method.
+     * @return The size of the current frame.
+     */
     public int getCurrentFrameSize() {
         return this.runTimeStack.getCurrentFrameSize();
     }
@@ -59,47 +76,65 @@ public class VirtualMachine {
     }
 
     /**
-     *
-     * @param offset
-     * @return
+     * Calls the runtime stack's store method.
+     * @param offset The number of slots above current frame marker.
+     * @return       The stored value.
      */
     public int store(int offset) {
         return this.runTimeStack.store(offset);
     }
 
     /**
-     *
-     * @param offset
-     * @return
+     * Calls the runtime stack's load method.
+     * @param offset The number of slots above current frame marker.
+     * @return       The item just loaded into the offset.
      */
     public int load(int offset) {
         return this.runTimeStack.load(offset);
     }
 
     /**
-     *
-     * @param offset
+     * Calls the runtime stack's newFrameAt method.
+     * @param offset slots down from the top of the runtime stack.
      */
     public void newFrameAt(int offset) {
         this.runTimeStack.newFrameAt(offset);
     }
 
-    public void setProgramCounter(int programCounter) {
-        this.programCounter = programCounter;
-    }
-
-    public void storeReturnAddress() {
-        this.returnAddress.push(programCounter);
-    }
-
-    public int retrieveReturnAddress() {
-        return this.returnAddress.pop();
-    }
-
+    /**
+     * Calls the runtime stack's popFrame method.
+     */
     public void popFrame() {
         this.runTimeStack.popFrame();
     }
 
+    /**
+     * Sets the program counter to a specific number.
+     * @param programCounter The number to set the program counter to.
+     */
+    public void setProgramCounter(int programCounter) {
+        this.programCounter = programCounter;
+    }
+
+    /**
+     * Stores the return address on the return address stack.
+     */
+    public void storeReturnAddress() {
+        this.returnAddress.push(programCounter);
+    }
+
+    /**
+     * Retrieves the top of the return address stack.
+     * @return The value of the top-most value of RA stack.
+     */
+    public int retrieveReturnAddress() {
+        return this.returnAddress.pop();
+    }
+
+    /**
+     * Toggles the verbose state.
+     * @param state The state of verbose (ON/OFF).
+     */
     public void setVerbose(String state) {
         if (state.equals("ON")) {
             isVerbose = true;
@@ -108,6 +143,10 @@ public class VirtualMachine {
         }
     }
 
+    /**
+     * Gets the values of the current frame.
+     * @return The values of the current frame.
+     */
     public String getArgs() {
         String word = this.runTimeStack.verboseDisplay();
         int start = word.lastIndexOf("[");
