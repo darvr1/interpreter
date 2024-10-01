@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-public class GotoCode extends ByteCodeJump {
+public class GotoCode implements Branchable {
     private String label;
     private int address;
 

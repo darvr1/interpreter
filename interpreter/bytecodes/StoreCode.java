@@ -5,7 +5,7 @@ import interpreter.virtualmachine.VirtualMachine;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreCode extends ByteCode{
+public class StoreCode implements ByteCode {
     private int offset;
     private String id;
     private int valuePopped;

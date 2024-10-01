@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-public class LabelCode extends ByteCode{
+public class LabelCode implements ByteCode {
     private String label;
 
     @Override

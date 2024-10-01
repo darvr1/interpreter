@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-public class VerboseCode extends ByteCode{
+public class VerboseCode implements ByteCode {
     private String state;
 
     @Override

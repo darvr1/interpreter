@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-public class WriteCode extends ByteCode{
+public class WriteCode implements ByteCode {
     @Override
     public void execute(VirtualMachine vm) {
         System.out.println(vm.peek());

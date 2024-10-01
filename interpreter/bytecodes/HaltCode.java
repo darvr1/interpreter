@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-public class HaltCode extends ByteCode{
+public class HaltCode implements ByteCode {
     @Override
     public void execute(VirtualMachine vm) {
         vm.terminate();

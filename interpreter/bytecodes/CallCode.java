@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-public class CallCode extends ByteCodeJump {
+public class CallCode implements Branchable {
     private String label;
     private String args;
     private int address;
@@ -27,9 +27,9 @@ public class CallCode extends ByteCodeJump {
 
         // Get base id
         String baseId = this.label;
-        int a = this.label.indexOf("<");
-        if (a != -1) {
-            baseId = this.label.substring(0, this.label.indexOf("<"));
+        int indexOfBracket = this.label.indexOf("<");
+        if (indexOfBracket != -1) {
+            baseId = this.label.substring(0, indexOfBracket);
         }
 
         result += "\t" + baseId + "(" + args.replaceAll(" ", "") + ")";

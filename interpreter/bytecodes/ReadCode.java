@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReadCode extends ByteCode{
+public class ReadCode implements ByteCode {
     @Override
     public void execute(VirtualMachine vm) {
         Scanner scanner = new Scanner(System.in);

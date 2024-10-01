@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
 
-public class LitCode extends ByteCode{
+public class LitCode implements ByteCode {
     private int value;
     private String id;
 
